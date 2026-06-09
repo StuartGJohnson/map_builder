@@ -203,9 +203,9 @@ For PyCharm, remember to set the tests directory as a source directory.
 
 ## Some results
 
-The `test_output/` directory contains some example results. One set is associated with the sim suite (see above). The other is a test of the mesh rasterizer tools on a real world example. 
+The `test_output/` directory contains some example results. One set is associated with the sim suite (see above). The other is a test of the mesh rasterizer tools on a real world example. The real world example is a 3D model (mesh + point cloud) of a single-floor dwelling, captured via photogrammetry from an Insta360 camera. 
 
-First, point cloud processing uses RANSAC to locate the floor and ceiling of a single-floor dwelling. The model and point cloud are then scaled and translated. The model mesh is then processed to find flat mesh near the floor. This occupancy map has no occupied cells, just free or unknown:
+First, point cloud processing uses RANSAC to locate the floor and ceiling of the single-floor dwelling. The model and point cloud are then scaled and translated. The output raster is initialized to unknown everywhere and then the mesh is processed to find flat mesh near the floor. The near-floor flat mesh is then projected to the 2D output raster as unoccupied cells. This occupancy map has no occupied cells, just unoccupied (white) or unknown (gray):
 
 ![Floor Map](test_output/metashape_mesh_floor_free.png)
 
@@ -221,6 +221,6 @@ And so, in principle, we have a navigation map and a driveable area/hazard map. 
 
 Note that meshes obtained by photogrammetry can be quite noisy in feature-poor regions. Some combination with Lidar can improve the results - as well as getting more photons on the scene!
 
-## AI assitance
+## AI assistance
 
 This repo was developed via iterative interaction with both ChatGPT (version 5.5, OpenAI 05/2026 - 06/2026) and Codex (OpenAI, 05/2026 - 06/2026). See `codex_instructions*.txt` for some example major instructions/prompts.
