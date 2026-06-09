@@ -1,0 +1,29 @@
+Create a ros2 package (this package will contain no ros2 nodes, but I need to eventually generate ros2 friendly occupancy (etc) maps, so we need a ros2 package) in the current
+directory called map_builder (this dir is the repo dir). this will be an ament_python package. I will be building from a directory up the tree, so when you do test builds (colcon), generate colcon artifacts some place safe.
+
+There is a point cloud file in data/metashape_pointcloud.ply. Use open3d to do point cloud operations (such as i/o).
+
+I need some python code which:
+
+1) loads a point cloud (ply file)
+
+2) ransacs to fit the floor plane - pick the largest point set fit by a plane. 
+
+3) determine +z by the the side of the plane with the most point cloud points.
+
+4) transform the data via the floor plane transform - setting z=0 at the floor plane.
+
+5) find the ceiling: there is a second plane, parallel to the first, which fits the most data. Use ransac to find this plane, constraining it to be parallel to the first, and with the most number of points fit. It might be there is a better way to do this, but let's try this first.
+
+6) the ceiling plane is at 8ft above the floor plane. Find the data scale such that this plane is at 2.4384 meters. 
+
+7) rescale all data points.
+
+8) re-emit the rescaled point cloud (as a new .ply file). Include whatever data was in the old .ply file, just with the updated coordinates.
+
+
+Write the code for this as a function in the map_builder/map_builder dir, and provide a test which runs this in the tests dir. Use python Unittest, not pytest. Process the .ply data set
+in the data/ dir.
+
+Call this first bit of code. pcd_preproc.py. there will be a python function def in this file, and a thin cli in pcd_preproc_cli.py which has a main which takes input and output filenames as args.
+

@@ -1,0 +1,16 @@
+__pycache__/
+*.py[cod]
+data/metashape*
+test_output/metashape*.ply
+
+# Packaging
+*.egg-info/
+.eggs/
+build/
+dist/
+
+# ROS2 / colcon
+build/
+install/
+log/
+

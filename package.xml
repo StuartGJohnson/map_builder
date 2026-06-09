@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>map_builder</name>
+  <version>0.0.1</version>
+  <description>Point cloud preprocessing tools for ROS 2 map generation.</description>
+  <maintainer email="sjohnson@example.com">sjohnson</maintainer>
+  <license>TODO</license>
+
+  <buildtool_depend>ament_python</buildtool_depend>
+
+  <exec_depend>python3-numpy</exec_depend>
+  <exec_depend>python3-open3d</exec_depend>
+  <exec_depend>python3-pil</exec_depend>
+  <exec_depend>python3-shapely</exec_depend>
+  <exec_depend>python3-trimesh</exec_depend>
+
+  <test_depend>ament_lint_auto</test_depend>
+  <test_depend>ament_lint_common</test_depend>
+
+  <export>
+    <build_type>ament_python</build_type>
+  </export>
+</package>

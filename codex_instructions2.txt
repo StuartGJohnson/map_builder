@@ -1,0 +1,15 @@
+Add another processing stage called pcd_filter, which does:
+
+    pcd = pcd.voxel_down_sample(0.01)
+
+    pcd, _ = pcd.remove_statistical_outliers(
+        nb_neighbors=30,
+        std_ratio=2.0,
+    )
+
+    pcd, _ = pcd.remove_radius_outliers(
+        nb_points=6,
+        search_radius=0.04,
+    )
+
+to a input/output pcd file. pair, just like previous processing. Add a test which processes this from the existing output in the test_output_dir. Actually, we need to rewrite the code so this can be reassembled into a pipeline, which passes the pcd object between stages. So we will need to pull the file i/o (pcd) out of the pipeline steps. The filtering step will have a cluster cleanup step added to it, but it will still output a pcd. The final stage will accept a pcd and output/save an occupancy map. 
