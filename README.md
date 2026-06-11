@@ -219,7 +219,7 @@ Note that this map is combined with the floor map to fill in unknown cells (gray
 
 And so, in principle, we have a navigation map and a driveable area/hazard map. These can be ingested into ROS2 nodes for localization and navigation.
 
-Note that meshes obtained by photogrammetry can be quite noisy in feature-poor regions. Some combination with Lidar can improve the results - as well as getting more photons on the scene!
+Note that meshes obtained by photogrammetry can be quite noisy in feature-poor regions. Some combination with Lidar can improve the results. Good lighting and processing tweaks can also greatly improve photogrammetry results.
 
 ## AI assistance
 
